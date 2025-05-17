@@ -1,0 +1,42 @@
+.movieInfo {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.poster {
+  max-width: 300px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.details {
+  flex: 1;
+}
+
+.title {
+  margin: 0 0 15px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.score {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.sectionHeading {
+  font-size: 1.3rem;
+  margin: 20px 0 10px;
+  color: #444;
+}
+
+.overview {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.genres {
+  margin-bottom: 30px;
+}
