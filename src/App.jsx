@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { Toaster } from "react-hot-toast";
 import Navigation from "./components/Navigation/Navigation";
 import Loader from "./components/Loader/Loader";
 import styles from "./App.module.css";
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+      <Toaster position="top-right" />
     </div>
   );
 };
