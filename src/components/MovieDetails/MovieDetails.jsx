@@ -10,13 +10,19 @@ const MovieDetails = ({ movie }) => {
 
   const userScore = vote_average ? Math.round(vote_average * 10) : 0;
 
-  const posterUrl = poster_path
-    ? `https://image.tmdb.org/t/p/w500${poster_path}`
-    : "https://via.placeholder.com/500x750?text=No+Image";
-
   return (
     <div className={styles.movieInfo}>
-      <img src={posterUrl} alt={title} className={styles.poster} />
+      <div className={styles.posterContainer}>
+        {poster_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={title}
+            className={styles.poster}
+          />
+        ) : (
+          <div className={styles.noPoster}>No poster available</div>
+        )}
+      </div>
 
       <div className={styles.details}>
         <h2 className={styles.title}>
