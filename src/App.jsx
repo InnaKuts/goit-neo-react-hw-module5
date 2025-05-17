@@ -1,35 +1,33 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import Navigation from "./components/Navigation/Navigation";
+import Loader from "./components/Loader/Loader";
+import styles from "./App.module.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
+const MovieDetailsPage = lazy(() =>
+  import("./pages/MovieDetailsPage/MovieDetailsPage")
+);
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className={styles.app}>
+      <Navigation />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<div>Cast will be here</div>} />
+            <Route path="reviews" element={<div>Reviews will be here</div>} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </div>
   );
-}
+};
 
 export default App;
