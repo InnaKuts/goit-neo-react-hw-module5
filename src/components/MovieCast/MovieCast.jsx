@@ -11,7 +11,6 @@ const MovieCast = () => {
   const { movieId } = useParams();
 
   const [cast, setCast] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
