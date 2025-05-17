@@ -13,9 +13,9 @@ const SearchForm = ({ onSubmit, initialValue = "" }) => {
         .min(2, "Search query must be at least 2 characters")
         .required("Please enter a search query"),
     }),
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: (values, { setSubmitting }) => {
       try {
-        await onSubmit(values.query);
+        onSubmit(values.query);
       } catch (error) {
         toast.error(error.message || "Please try again.");
       } finally {

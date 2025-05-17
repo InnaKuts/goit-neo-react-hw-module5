@@ -3,6 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import MovieList from "../../components/MovieList/MovieList";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import NoResults from "../../components/NoResults/NoResults";
 import { searchMovies } from "../../services/apiService";
 import styles from "./MoviesPage.module.css";
 
@@ -54,16 +56,12 @@ const MoviesPage = () => {
 
       {isLoading && <Loader />}
 
-      {error && (
-        <div className={styles.error}>
-          <p>{error}</p>
-        </div>
-      )}
+      {error && <ErrorMessage message={error} />}
 
       {!isLoading && !error && searched && movies.length === 0 && (
-        <div className={styles.noResults}>
-          <p>No movies found for "{query}". Try a different search.</p>
-        </div>
+        <NoResults
+          message={`No movies found for "${query}". Try a different search.`}
+        />
       )}
 
       {!isLoading && !error && movies.length > 0 && (

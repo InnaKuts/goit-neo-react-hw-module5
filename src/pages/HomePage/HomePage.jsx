@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import MovieList from "../../components/MovieList/MovieList";
 import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import NoResults from "../../components/NoResults/NoResults";
 import { getTrendingMovies } from "../../services/apiService";
 import styles from "./HomePage.module.css";
 
@@ -33,20 +35,14 @@ const HomePage = () => {
 
       {isLoading && <Loader />}
 
-      {error && (
-        <div className={styles.error}>
-          <p>{error}</p>
-        </div>
+      {error && <ErrorMessage message={error} />}
+
+      {!isLoading && !error && movies.length === 0 && (
+        <NoResults message="No trending movies found. Please try again later." />
       )}
 
       {!isLoading && !error && movies.length > 0 && (
         <MovieList movies={movies} />
-      )}
-
-      {!isLoading && !error && movies.length === 0 && (
-        <div className={styles.noMovies}>
-          <p>No trending movies found. Please try again later.</p>
-        </div>
       )}
     </div>
   );
