@@ -47,7 +47,7 @@ export const getMovieDetails = async (movieId) => {
   }
 };
 
-export const getMovieCredits = async (movieId) => {
+export const getMovieCast = async (movieId) => {
   try {
     const { data } = await api.get(
       `${ENDPOINTS.MOVIE_DETAILS}/${movieId}${ENDPOINTS.MOVIE_CREDITS}`
